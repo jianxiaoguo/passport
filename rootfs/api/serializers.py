@@ -22,11 +22,21 @@ class RegisterForm(UserCreationForm):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=150, required=False)
+    email = serializers.CharField(max_length=254, required=False)
+
     class Meta:
         model = User
         fields = ('id', 'username', 'email', "first_name", "last_name",
                   "is_staff", "is_active", "is_superuser")
 
+    def update(self, instance, validated_data):
+        if validated_data.get('username'):
+            instance.username = validated_data.get('username')
+        if validated_data.get('email'):
+            instance.email = validated_data.get('email')
+        instance.save()
+        return instance
 
 class UserEmailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -60,7 +70,7 @@ class UserGrantsSerializer(serializers.ModelSerializer):
 
 class UserTokensSerializer(serializers.ModelSerializer):
     """Serialize user status for a AccessToken model."""
-
+    application = serializers.ReadOnlyField(source='application.name')
     class Meta:
         model = AccessToken
         fields = '__all__'

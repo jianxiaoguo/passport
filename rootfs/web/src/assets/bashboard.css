@@ -14219,7 +14219,7 @@ table.editable-list.ssh-keys td .local {
 }
 
 #overview-page .overview-activity, #overview-page .overview-content, #overview-page .overview-team {
-    width: 65%;
+    width: 50%;
     padding: 10px 20px 0
 }
 
@@ -19169,4 +19169,11 @@ a.no-hover-underline:active, a.no-hover-underline:hover {
 
 .focus-z-1:focus {
     z-index: 1
+}
+
+.hk-button--primary {
+    background-clip: border-box!important;
+    background-origin: border-box!important;
+    background: #79589f;
+    color: #fff;
 }

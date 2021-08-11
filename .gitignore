@@ -25,3 +25,7 @@ venv/
 
 .idea
 env/
+oidc.key
+rootfs/api/settings/
+rootfs/web/yarn-error.log
+rootfs/node_modules/
