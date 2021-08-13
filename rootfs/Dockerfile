@@ -4,8 +4,6 @@ ADD web /app
 WORKDIR /app
 
 RUN echo 'http://mirrors.aliyun.com/alpine/v3.4/main' > /etc/apk/repositories \
-    && echo "registry=\"https://registry.npm.taobao.org\"" > ~/.npmrc \
-    && echo "sass_binary_site=https://npm.taobao.org/mirrors/node-sass/" >> ~/.npmrc \
     && npm install \
     && yarn build
 
