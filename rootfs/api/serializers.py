@@ -38,6 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
 class UserEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -71,6 +72,7 @@ class UserGrantsSerializer(serializers.ModelSerializer):
 class UserTokensSerializer(serializers.ModelSerializer):
     """Serialize user status for a AccessToken model."""
     application = serializers.ReadOnlyField(source='application.name')
+
     class Meta:
         model = AccessToken
         fields = '__all__'

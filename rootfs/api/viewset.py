@@ -1,6 +1,5 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-from oauth2_provider.contrib.rest_framework import TokenHasScope
 
 
 class NormalUserViewSet(viewsets.ModelViewSet):
@@ -11,4 +10,3 @@ class NormalUserViewSet(viewsets.ModelViewSet):
     the `model` attribute shortcut.
     """
     permission_classes = [IsAuthenticated]
-    # permission_classes = [IsAuthenticated, TokenHasScope]
