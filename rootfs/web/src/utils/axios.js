@@ -5,8 +5,7 @@ import {getCookie} from "./array";
 
 // console.log(import.meta.env.VITE_APP_BASE_API)
 // // 环境的切换
-// axios.defaults.baseURL = import.meta.env.VITE_APP_BASE_API
-axios.defaults.baseURL = process.env.NODE_ENV == 'development' ? '//p.uucin.com' : '//p.uucin.com'
+axios.defaults.baseURL = import.meta.env.VITE_APP_BASE_API
 axios.defaults.withCredentials = true
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
@@ -43,7 +42,7 @@ axios.interceptors.response.use(
             // 未登录则跳转登录页面，并携带当前页面的路径
             // 在登录成功后返回当前页面，这一步需要在登录页操作。
           case 401:
-            window.location.replace("http://p.uucin.com/user/login/?next=http://p.uucin.com/");
+            window.location.replace("/user/login/");
             break;
 
             // 403 token过期
@@ -53,7 +52,7 @@ axios.interceptors.response.use(
           case 403:
               console.log("error.response.data.detail: ", error.response.data.detail)
               if(error.response.data.detail.indexOf('Authentication credentials were not provided.') >= 0){
-                  window.location.replace("http://p.uucin.com/user/login/?next=http://p.uucin.com/");
+                  window.location.replace("/user/login/");
                   break;
               }else {
                   console.log({
