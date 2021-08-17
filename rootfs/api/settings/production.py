@@ -252,7 +252,9 @@ random_secret = ')u_jckp95wule8#wxd8sm!0tj2j&aveozu!nnpgl)2x&&16gfj'
 SECRET_KEY = os.environ.get('DRYCC_SECRET_KEY', random_secret)
 
 # database setting
-DRYCC_DATABASE_URL = os.environ.get('DRYCC_DATABASE_URL', 'postgres://:@:5432/passport')  # noqa
+DRYCC_DATABASE_URL = os.environ.get('DRYCC_DATABASE_URL',
+                                    'postgres://postgres:123456@192.168.6.50:5432/drycc_passport')
+# DRYCC_DATABASE_URL = os.environ.get('DRYCC_DATABASE_URL', 'postgres://:@:5432/passport')  # noqa
 DATABASES = {
     'default': dj_database_url.config(default=DRYCC_DATABASE_URL,
                                       conn_max_age=600)
@@ -320,7 +322,8 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'web', 'dist', 'asset
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # see: https://django-oauth-toolkit.readthedocs.io/en/latest/oidc.html?highlight=oidc.key#creating-rsa-private-key  # noqa
-with open('/var/run/secrets/drycc/passport/oidc-rsa-private-key') as f:
+with open('oidc.key') as f:
+# with open('/var/run/secrets/drycc/passport/oidc-rsa-private-key') as f:
     OIDC_RSA_PRIVATE_KEY = f.read()
 OAUTH2_PROVIDER = {
     "OIDC_ENABLED": True,
