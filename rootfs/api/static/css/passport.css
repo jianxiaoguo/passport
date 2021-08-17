@@ -118,7 +118,7 @@ form .input-icon {
 
 form input[type="text"], form input[type="email"], form input[type="password"], form input[type="number"] {
     height: 44px;
-    padding-left: 20px;
+    padding-left: 50px;
 }
 
 
