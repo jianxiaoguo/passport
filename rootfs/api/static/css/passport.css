@@ -118,7 +118,7 @@ form .input-icon {
 
 form input[type="text"], form input[type="email"], form input[type="password"], form input[type="number"] {
     height: 44px;
-    padding-left: 50px;
+    padding-left: 20px;
 }
 
 
@@ -268,4 +268,21 @@ form li {
 
 .error {
     color: #c20707;
+}
+
+.tc {
+    text-align: center
+}
+
+.gray-90 {
+    color: rgba(89, 105, 129, .9)
+}
+
+.inverted-wrapper {
+    padding: 40px 40px 0px 40px;
+}
+
+.white-link {
+    margin-left: 25px;
+    color: #fff
 }
