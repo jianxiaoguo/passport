@@ -18,6 +18,8 @@ env:
   value: {{ .Values.time_zone | default "UTC" | quote }}
 - name: "DRYCC_CONTROLLER_DOMAIN"
   value: http://drycc.{{ .Values.global.platform_domain }}
+- name: "DRYCC_MONITOR_GRAFANA_DOMAIN"
+  value: http://drycc-monitor-grafana.{{ .Values.global.platform_domain }}
 - name: SOCIAL_AUTH_DRYCC_CONTROLLER_KEY
   valueFrom:
     secretKeyRef:
@@ -38,6 +40,10 @@ env:
   value: {{ .Values.admin_password | default "admin" | quote }}
 - name: ADMIN_EMAIL
   value: {{ .Values.admin_email | default "admin@email.com" | quote }}
+{{- if if eq .Values.global.grafana_location "on-cluster" }}
+- name: GRAFANA_ON_CLUSTER
+  value: "true"
+{{- end }}
 {{- if (.Values.database_url) }}
 - name: DRYCC_DATABASE_URL
   valueFrom:
