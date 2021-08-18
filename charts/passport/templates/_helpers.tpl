@@ -40,9 +40,19 @@ env:
   value: {{ .Values.admin_password | default "admin" | quote }}
 - name: ADMIN_EMAIL
   value: {{ .Values.admin_email | default "admin@email.com" | quote }}
-{{- if if eq .Values.global.grafana_location "on-cluster" }}
+{{- if eq .Values.global.grafana_location "on-cluster" }}
 - name: GRAFANA_ON_CLUSTER
   value: "true"
+- name: SOCIAL_AUTH_DRYCC_GRAFANA_KEY
+  valueFrom:
+    secretKeyRef:
+      name: passport-creds
+      key: social-auth-drycc-grafana-key
+- name: SOCIAL_AUTH_DRYCC_GRAFANA_SECRET
+  valueFrom:
+    secretKeyRef:
+      name: passport-creds
+      key: social-auth-drycc-grafana-secret
 {{- end }}
 {{- if (.Values.database_url) }}
 - name: DRYCC_DATABASE_URL

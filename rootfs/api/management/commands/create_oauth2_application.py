@@ -15,7 +15,7 @@ class Command(BaseCommand):
         if os.environ.get('GRAFANA_ON_CLUSTER') == "true":
             app_list.append({
                 "name": "GRAFANA",
-                 "redirect_uri": f"{os.environ.get('DRYCC_MONITOR_GRAFANA_DOMAIN')}/login/generic_oauth/"  # noqa
+                 "redirect_uri": f"{os.environ.get('DRYCC_MONITOR_GRAFANA_DOMAIN')}/login/generic_oauth"  # noqa
             })
 
         for app in app_list:
@@ -32,7 +32,7 @@ class Command(BaseCommand):
             if not user:
                 self.stdout.write("Cannot create because there is no superuser")
             application, updated = Application.objects.update_or_create(
-                name='Drycc Controller',
+                name='Drycc ' + app["name"].title(),
                 defaults={
                     'client_id': client_id,
                     'client_secret': client_secret,
@@ -44,6 +44,6 @@ class Command(BaseCommand):
                 }
             )
             if updated:
-                self.stdout.write(f'Drycc app["name"] app created')
+                self.stdout.write(f'Drycc {app["name"]} app created')
             else:
-                self.stdout.write(f'Drycc app["name"] app updated')
+                self.stdout.write(f'Drycc {app["name"]} app updated')
